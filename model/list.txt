@@ -1,0 +1,6 @@
+  Cerebral WM Hypointensities* Total Percent Of Icv (AUO)
+  Cortical Gray Matter Total Percent Of Icv (NC) 
+  Ventricle Total Percent Of Icv (AQX) 
+  Cerebral White Matter Total Percent Of Icv (ATV) 
+  Whole Brain Total Percent Of Icv (AVH)
+
