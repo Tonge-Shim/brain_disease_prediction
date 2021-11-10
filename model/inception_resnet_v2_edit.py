@@ -70,9 +70,9 @@ class Inception_ResNet_B(nn.Module):
         self.branch_0 = Conv3d(in_channels, 192, 1, stride=1, padding=0, bias=False)
         self.branch_1 = nn.Sequential(
             Conv3d(in_channels, 128, 1, stride=1, padding=0, bias=False),
-            Conv3d(128, 149, (1, 1, 7), stride=1, padding=(0, 0, 3), bias=False),#21
-            Conv3d(149, 170, (1, 7, 1), stride=1, padding=(0, 3, 0), bias=False),#21
-            Conv3d(170, 192, (7, 1, 1), stride=1, padding=(3, 0, 0), bias=False) #22
+            Conv3d(128, 149, (1, 1, 3), stride=1, padding=(0, 0, 1), bias=False),#21
+            Conv3d(149, 170, (1, 3, 1), stride=1, padding=(0, 1, 0), bias=False),#21
+            Conv3d(170, 192, (3, 1, 1), stride=1, padding=(1, 0, 0), bias=False) #22
         )
         self.conv = nn.Conv3d(384, 1088, 1, stride=1, padding=0, bias=True)
         self.relu = nn.ReLU(inplace=True)
@@ -139,13 +139,13 @@ class Inception_ResNetv2(nn.Module):
         super(Inception_ResNetv2, self).__init__()
         blocks = []
         blocks.append(Stem(in_channels))
-        for i in range(10):
+        for i in range(5):#10
             blocks.append(Inception_ResNet_A(320, 0.17))
         blocks.append(Reduction_A(320, k, l, m, n))
-        for i in range(20):
+        for i in range(10):#20
             blocks.append(Inception_ResNet_B(1088, 0.10))
         blocks.append(Reduciton_B(1088))
-        for i in range(9):
+        for i in range(4):#9
             blocks.append(Inception_ResNet_C(2080, 0.20))
         blocks.append(Inception_ResNet_C(2080, activation=False))
         self.features = nn.Sequential(*blocks)
